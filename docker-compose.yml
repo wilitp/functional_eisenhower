@@ -1,0 +1,13 @@
+version: 3
+
+# TODO: containerize
+services:
+  app:
+    build: 
+      context: .
+  postgres:
+    image: postgres
+    env_file:
+      - postgres.env
+    volumes:
+      - eisen_db:/var/lib/postgresql/data/
