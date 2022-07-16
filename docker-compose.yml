@@ -1,13 +1,23 @@
-version: 3
+version: "3"
 
-# TODO: containerize
 services:
   app:
     build: 
       context: .
+    volumes:
+      - ./app:/app
+    ports: 
+      - 4000:4000
+    depends_on:
+      - postgres
   postgres:
     image: postgres
     env_file:
       - postgres.env
+    ports:
+      - "5423:5432"
     volumes:
       - eisen_db:/var/lib/postgresql/data/
+
+volumes:
+  eisen_db:
